@@ -11,14 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('pages.index');
-});
+Route::get('/', 'PagesController@index');
+
+// Route::get('/login', function (){
+//     return view('auth.login');
+// });
+Route::get('/products/{id}', 'ProductsController@productDetails');
+
+
 
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/login')
 
 
