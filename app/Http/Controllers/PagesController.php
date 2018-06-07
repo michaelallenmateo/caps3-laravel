@@ -22,4 +22,13 @@ class PagesController extends Controller
 
 		return view('pages.index', compact('products'));
 	}
+
+	function writeReview($id) {
+		$products = Products::find($id); //SELECT * FROM items;
+    	return view('pages.product_details', compact('products'));
+		}
+
+
+
+
 }

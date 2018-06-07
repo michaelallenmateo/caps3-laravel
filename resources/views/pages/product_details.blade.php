@@ -4,7 +4,43 @@
 
 
 
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="form-horizontal" method="POST">
+      {{ csrf_field() }}
+      {{-- {{ method_field('PATCH') }} --}}
+      <input type="hidden" name="product_id" value="{{$products->id}}">
+      <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+      <div class="modal-body">
+        <h5>Give a title for this review</h5>
+        <textarea class="form-control" style="min-width: 100%" placeholder="" name="title"></textarea>
+        <h5>Share to others your experience with this product</h5>
+        <textarea class="form-control" style="min-width: 100%" placeholder="" name="content"></textarea>
+        <h5>How would you rate this product?</h5>
+         <div class='starrr' id='star1'></div>
+        <div>&nbsp;
+        <span class='your-choice-was' style='display: none;'>
+        You rate it as <span class='choice'></span> star.
+      </span>
+      <input type="hidden" name="rating" value="3">
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
 
 
 <div class="demo-preview">
@@ -69,17 +105,28 @@
 </div>
 
 
-<div class="container">
+<div class="container" style="border:1px solid black;height: 750px;">
     
 
-    <h5>Click to rate:</h5>
+    {{-- <h5>Click to rate:</h5>
     <div class='starrr' id='star1'></div>
     <div>&nbsp;
       <span class='your-choice-was' style='display: none;'>
         Your rating was <span class='choice'></span>.
       </span>
+    </div> --}}
+
+    <div>
+      @guest
+      <a href="/writereview/{{$products->id}}" class="btn btn-success review">Write a Review</a>
+      @else
+      <a href="#" class="btn btn-success review" data-toggle="modal" data-target="#exampleModal">Write a Review</a>
+        @endguest
+    <br>
     </div>
-  </div>
+
+
+</div>
 
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
   <script src="/js/starrr.js"></script>
@@ -95,101 +142,7 @@
       }
     });
   </script>
-  {{-- <script type="text/javascript">
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-39205841-5', 'dobtco.github.io');
-    ga('send', 'pageview');
-  </script> --}}
 
-
-{{-- rating --}}
-
-{{-- <div class="col-md-12">
-            <div class="thumbnail">
-              <img src="/image/{{$products->image}}">
-              <div class="caption-full">
-                  <h4 class="pull-right">${{ number_format($products->price, 2)}}</h4>
-                  <h4><a href="{{url('products/'.$products->id)}}">{{$products->name}}</a></h4>
-                  <p>{{$products->description}}</p>
-              </div>
-              <div class="ratings"> --}}
-            {{--       <p class="pull-right">{{$products->rating_count}} {{ Str::plural('review', $product->rating_count);}}</p>
-                  <p>
-                    @for ($i=1; $i <= 5 ; $i++)
-                      <span class="glyphicon glyphicon-star{{ ($i <= $product->rating_cache) ? '' : '-empty'}}"></span>
-                    @endfor
-                    {{ number_format($products->rating_cache, 1);}} stars
-                  </p>
-              </div>
-            </div>
-            <div class="well" id="reviews-anchor">
-              <div class="row">
-                <div class="col-md-12">
-                  @if(Session::get('errors'))
-                    <div class="alert alert-danger">
-                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                       <h5>There were errors while submitting this review:</h5>
-                       @foreach($errors->all('<li>:message</li>') as $message)
-                          {{$message}}
-                       @endforeach
-                    </div>
-                  @endif
-                  @if(Session::has('review_posted'))
-                    <div class="alert alert-success">
-                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                      <h5>Your review has been posted!</h5>
-                    </div>
-                  @endif
-                  @if(Session::has('review_removed'))
-                    <div class="alert alert-success">
-                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                      <h5>Your review has been removed!</h5>
-                    </div>
-                  @endif
-                </div>
-              </div>
-              <div class="text-right">
-                <a href="#reviews-anchor" id="open-review-box" class="btn btn-success btn-green">Leave a Review</a>
-              </div>
-              <div class="row" id="post-review-box" style="display:none;">
-                <div class="col-md-12">
-                  {{Form::open()}}
-                  {{Form::hidden('rating', null, array('id'=>'ratings-hidden'))}}
-                  {{Form::textarea('comment', null, array('rows'=>'5','id'=>'new-review','class'=>'form-control animated','placeholder'=>'Enter your review here...'))}}
-                  <div class="text-right">
-                    <div class="stars starrr" data-rating="{{Input::old('rating',0)}}"></div>
-                    <a href="#" class="btn btn-danger btn-sm" id="close-review-box" style="display:none; margin-right:10px;"> <span class="glyphicon glyphicon-remove"></span>Cancel</a>
-                    <button class="btn btn-success btn-lg" type="submit">Save</button>
-                  </div>
-                {{Form::close()}}
-                </div>
-              </div>
-
-              @foreach($reviews as $review)
-              <hr>
-                <div class="row">
-                  <div class="col-md-12">
-                    @for ($i=1; $i <= 5 ; $i++)
-                      <span class="glyphicon glyphicon-star{{ ($i <= $review->rating) ? '' : '-empty'}}"></span>
-                    @endfor
-
-                    {{ $review->users ? $review->users->firstname : 'Anonymous'}} <span class="pull-right">{{$review->timeago}}</span> 
-                    
-                    <p>{{{$review->comment}}}</p>
-                  </div>
-                </div>
-              @endforeach
-              {{ $reviews->links(); }} --}}
-            </div>
-        </div>
-
-
-
-
-{{-- end of rating --}}
 
 
 

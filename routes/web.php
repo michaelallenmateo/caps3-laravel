@@ -21,6 +21,13 @@ Route::get('/products/{id}', 'ProductsController@productDetails');
 
 
 
+Route::middleware('auth')->group( function() {
+	Route::get('/writereview/{id}', 'PagesController@writeReview');
+	Route::post('/writereview/{id}', 'ReviewsController@postReview');
+
+});	
+
+
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');

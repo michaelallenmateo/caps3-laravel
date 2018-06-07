@@ -10,3 +10,17 @@
 ul.list {
     list-style: none;
 }
+
+a.review,
+a.review:hover,
+a.review:active,
+a.review:focus,
+a.review:active:hover {
+	border:1px solid black;
+	background-color: black;
+	color: white;
+	border-radius: 0;
+	float: right;
+	margin-top: 10px;
+	outline: none;
+}
