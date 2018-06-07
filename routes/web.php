@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'PagesController@index');
+Route::get('/products/category/{id}', 'PagesController@showByCategory');
 
 // Route::get('/login', function (){
 //     return view('auth.login');

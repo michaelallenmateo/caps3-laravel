@@ -6,7 +6,7 @@
        
         
 
-        <h2>RECENT ADDED:</h2>
+        {{-- <h2>RECENT ADDED:</h2> --}}
         {{-- <div class="row">
             <ul>
             @foreach(\App\Category::all() as $category)
@@ -21,7 +21,7 @@
             <div class="col-xs-3 item">
             <a href="/products/{{$product->id}}" style="list-style:none;">
                 <div class="col-xs-12">
-                    <img src="image/{{$product->image}}">
+                    <img src="/image/{{$product->image}}">
                 </div>
             </a>
                 <p>{{ $product->name }}</p>

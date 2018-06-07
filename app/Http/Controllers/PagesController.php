@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Products;
+use \App\Categories;
 
 class PagesController extends Controller
 {
@@ -13,4 +14,12 @@ class PagesController extends Controller
     	return view('pages.index', compact('products'));
 
     }
+
+
+    function showByCategory($id) {
+		$category = Categories::find($id);
+		$products = $category->products;
+
+		return view('pages.index', compact('products'));
+	}
 }

@@ -2,170 +2,41 @@
 <html>
 <head>
 	<title>@yield('title')</title>
+	<link rel="icon" type="image/gif/png" href="/image/tablogo.png">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/css/product_details.css">
+	<link rel="stylesheet" type="text/css" href="/css/template.css">
+	<link rel="stylesheet" type="text/css" href="/css/product_details.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- Fontawesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  {{-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"> --}}
 
-	<style type="text/css">
-		h3 {
-			text-align: center;
-		}
-		img {
-			height: 200px;
-		}
-		.item {
-			margin-bottom: 50px;
-		}
-		.category {
-			text-align: center;
-			margin-bottom: 50px;
-		}
-		form {
-			display: inline;
-		}
-
-		nav.navbar-default {
-			background-color: black;
-			color: white;
-		}
-
-		ul.ml-auto {
-			font-size: 18px;
-			font-weight: bold;
-		}
-		li a:hover {
-			color: white!important;
-			text-decoration: none;
-		}
-
-
-		/* STYLES SPECIFIC TO FOOTER  */
-		.footer {
-		  width: 100%;
-		  position: relative;
-		  height: auto;
-		  background-color: black!important;
-		}
-		.footer .col {
-		  width: 280px;
-		  height: auto;
-		  float: left;
-		  box-sizing: border-box;
-		  /*  -webkit-box-sizing: border-box;
-		    -moz-box-sizing: border-box;*/
-		  padding: 0px 20px 20px 20px;
-		}
-		.footer .col h1 {
-		  margin: 0;
-		  padding: 0;
-		  font-family: inherit;
-		  font-size: 12px;
-		  line-height: 17px;
-		  padding: 20px 0px 5px 0px;
-		  color: white;
-		  font-weight: normal;
-		  text-transform: uppercase;
-		  letter-spacing: 0.250em;
-		}
-		.footer .col ul {
-		  list-style-type: none;
-		  margin: 0;
-		  padding: 0;
-		}
-		.footer .col ul li {
-		  color: white;
-		  font-size: 14px;
-		  font-family: inherit;
-		  font-weight: bold;
-		  padding: 5px 0px 5px 0px;
-		  cursor: pointer;
-		
-		}
-
-		.col.social h1{
-		margin-left: 8px;
-		}
-
-		.social ul li {
-		  display: inline-block;
-		  padding-right: 5px !important;
-		}
-
-		.social ul li img {
-		  width: 40px;
-		  height: 40px;
-		}
-
-		
-		.clearfix {
-		  clear: both;
-		}
-		@media only screen and (min-width: 1280px) {
-		  .contain {
-		    width: 1200px;
-		    margin: 0 auto;
-		  }
-		}
-		@media only screen and (max-width: 1139px) {
-		  .contain .social {
-		    width: 1000px;
-		    display: block;
-		  }
-		  .social h1 {
-		    margin: 0px;
-		  }
-		}
-		@media only screen and (max-width: 950px) {
-		  .footer .col {
-		    width: 33%;
-		  }
-		  .footer .col h1 {
-		    font-size: 14px;
-		  }
-		  .footer .col ul li {
-		    font-size: 13px;
-		  }
-		}
-		@media only screen and (max-width: 500px) {
-		    .footer .col {
-		      width: 50%;
-		    }
-		    .footer .col h1 {
-		      font-size: 14px;
-		    }
-		    .footer .col ul li {
-		      font-size: 13px;
-		    }
-		}
-		@media only screen and (max-width: 340px) {
-		  .footer .col {
-		    margin-left: 25px;
-		    width: 33.33%;
-		  }
-		}
-
-
-	</style>
+	
 </head>
 <body>
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a class="navbar-brand" href="/">BeautyTalk</a>
+	      <a class="navbar-brand" href="/"><img src="/image/mainlogo.png" id="mainlogo"></a>
 	    </div>
-	    <ul class="navbar-nav ml-auto" style="list-style: none;display: inline-block;margin-top:15px;">
+	    <ul class="navbar-nav ml-auto">
 	    		@foreach(\App\Categories::all() as $category)
-	    	<li style="padding-top: 15px;">
-				<a href="/{{$category->title}}" style="margin-right:40px;">
+	    	<li class="categories">
+				<a href="/products/category/{{$category->id}}">
 					<li>{{$category->title}}</li>
 				</a>
 		 	<li>	
 		 		@endforeach
+        <li class="categories">
+        <a href="/">
+          <li>ALL PRODUCTS</li>
+        </a>
+      <li>  
 	    </ul>
-	    <ul class="nav navbar-nav {{-- navbar-right --}}">
+	    <ul class="nav navbar-nav navbar-right">
 	      @guest
 	          <li><a href="{{ route('login') }}">Login</a></li>
 	          <li><a href="{{ route('register') }}">Register</a></li>
@@ -230,7 +101,7 @@
   </div>  
 
   <div class="col social">
-    <h1>Social</h1>
+    <h1>Social Accounts</h1>
     <ul>
       <li><img src="/image/instagram.png"></li>
       <li><img src="/image/fb.png"></li>
