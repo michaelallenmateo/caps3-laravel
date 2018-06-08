@@ -3,6 +3,12 @@
 @section('content')
 
 
+    @if(Session::has('success_message'))
+    <div class="alert alert-success">
+      {{ Session::get('success_message') }}
+    </div>
+    @endif
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -14,11 +20,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form class="form-horizontal" method="POST">
+
+      @guest
+      <form class="form-horizontal" method="POST" action="{{ URL('/writereview/{id}') }}">
       {{ csrf_field() }}
       {{-- {{ method_field('PATCH') }} --}}
       <input type="hidden" name="product_id" value="{{$products->id}}">
-      <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+      <input type="hidden" name="user_id" value="">
       <div class="modal-body">
         <h5>Give a title for this review</h5>
         <textarea class="form-control" style="min-width: 100%" placeholder="" name="title"></textarea>
@@ -38,6 +46,37 @@
         <button type="submit" class="btn btn-primary">Save changes</button>
       </div>
     </form>
+
+
+      @else
+
+      <form class="form-horizontal" method="POST" action="{{ URL('/writereview/{id}') }}">
+      {{ csrf_field() }}
+      {{-- {{ method_field('PATCH') }} --}}
+      <input type="hidden" name="product_id" value="{{$products->id}}">
+      <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+      <div class="modal-body">
+        <h5>Give a title for this review</h5>
+        <textarea class="form-control" style="min-width: 100%" placeholder="" name="title"></textarea>
+        <h5>Share to others your experience with this product</h5>
+        <textarea class="form-control" style="min-width: 100%" placeholder="" name="content"></textarea>
+        <h5>How would you rate this product?</h5>
+         <div class='starrr' id='star1'></div>
+        <div>&nbsp;
+        <span class='your-choice-was' style='display: none;'>
+        You rate it as <span class='choice'></span> star.
+      </span>
+      <input type="hidden" name="rating" value="" class="rating">
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </form>
+
+    @endguest
+    
     </div>
   </div>
 </div>
@@ -90,7 +129,7 @@
         <div class="clearfix"></div>
       </div>
       <div class="form-group">
-        <a href="#"><i class="far fa-heart fa-2x"></i> I Like it!</a>
+        <a href="#" style="text-decoration: none;"><i class="far fa-heart fa-2x"></i> I Like it!</a>
         {{-- <a href="#section" class="btn btn-primary btn-see-reviews">See Reviews</a> --}}
         {{-- <a href="/menu/{{$products->id}}/writereview" class="btn btn-primary btn-write-review">Write a Review</a> --}}
       </div>
@@ -105,7 +144,7 @@
 </div>
 
 
-<div class="container" style="border:1px solid black;height: 750px;">
+<div class="container" style="border:1px solid #D0D3D4;min-height: 550px;margin-bottom: 250px;">
     
 
     {{-- <h5>Click to rate:</h5>
@@ -126,7 +165,41 @@
     </div>
 
 
+              @foreach($products->reviews as $review)
+              <hr>
+                <div class="row">
+                    <div class="col-md-3">
+                        @for ($i=1; $i <= 5 ; $i++)
+                          <span class="glyphicon glyphicon-star{{ ($i <= $review->rating) ? '' : '-empty'}}"></span>
+                        @endfor
+                        <br>
+
+                        {{ $review->user ? $review->user->firstname." ".$review->user->lastname : 'User account deleted'}} 
+
+                        <br>
+                        <span class="">
+                      {{$review->created_at->diffForHumans()}}</span> 
+                    </div>
+
+                    <div class="col-md-9">
+                    <p><strong>{{{$review->title}}}</strong></p>
+                    <p>{{{$review->content}}}</p>
+
+                    
+                  </div>
+                </div>
+              @endforeach
+
+
+
+
 </div>
+
+
+
+
+
+
 
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
   <script src="/js/starrr.js"></script>
@@ -136,6 +209,7 @@
         if (value) {
           $('.your-choice-was').show();
           $('.choice').text(value);
+          $('.rating').val(value);
         } else {
           $('.your-choice-was').hide();
         }

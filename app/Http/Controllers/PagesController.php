@@ -29,6 +29,8 @@ class PagesController extends Controller
 		}
 
 
-
+	function showReviews () {
+		return view('pages.myreviews');
+	}	
 
 }

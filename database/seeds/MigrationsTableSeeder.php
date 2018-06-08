@@ -35,6 +35,24 @@ class MigrationsTableSeeder extends Seeder
                 'migration' => '2014_10_12_100000_create_password_resets_table',
                 'batch' => 1,
             ),
+            3 => 
+            array (
+                'id' => 20,
+                'migration' => '2018_06_04_011205_products_categories_table',
+                'batch' => 2,
+            ),
+            4 => 
+            array (
+                'id' => 21,
+                'migration' => '2018_06_05_011502_products_table',
+                'batch' => 2,
+            ),
+            5 => 
+            array (
+                'id' => 22,
+                'migration' => '2018_06_06_011733_product_reviews_table',
+                'batch' => 2,
+            ),
         ));
         
         

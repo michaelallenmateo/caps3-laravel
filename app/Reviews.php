@@ -7,17 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Reviews extends Model
 {
 	    function product() {
-	    	return $this->BelongsTo('\App\Products','product_id');
+	    	return $this->belongsTo('\App\Products','product_id');
 	}
 
 		function user() {
-	    	return $this->BelongsTo('\App\Users','user_id');
+	    	return $this->BelongsTo('\App\User');
 	}
 
 
-	protected $fillable = [
-        'product_id','user_id','rating','title','content',
-    ];
+	// protected $fillable = [
+ //        'product_id','user_id','rating','title','content',
+ //    ];
 
 
 }
