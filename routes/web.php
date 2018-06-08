@@ -24,6 +24,9 @@ Route::get('/products/{id}', 'ProductsController@productDetails');
 Route::middleware('auth')->group( function() {
 	Route::get('/writereview/{id}', 'PagesController@writeReview');
 	Route::post('/writereview/{id}', 'ReviewsController@postReview');
+	Route::get('/myreviews', 'PagesController@showReviews');
+	Route::delete('/myreviews/{id}/delete', 'ReviewsController@delete');
+	// Route::patch('/myreviews/{id}/edit', 'ReviewsController@update');
 
 });	
 
