@@ -12,7 +12,7 @@ class ReviewsController extends Controller
         $rules = array(
             'product_id' => 'required',
             'user_id' => 'required',
-            'rating' => 'required|integer|between:1,5',
+            'rating' => 'required|integer|between:0,5',
             'title' => 'required',
             'content' => 'required'
         );
@@ -36,7 +36,7 @@ class ReviewsController extends Controller
         $item = Reviews::find($id);
         $item->delete();
 
-        Session::flash('success_message', 'Review Deleted Successfully');
+        Session::flash('success_message', 'Review deleted successfully');
 
         return redirect()->back();
     }

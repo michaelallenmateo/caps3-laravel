@@ -1,5 +1,13 @@
 		body{
 			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+
+
+		div.container {
+			min-height: 500px;
+			margin-bottom: 50px;
 		}
 
 

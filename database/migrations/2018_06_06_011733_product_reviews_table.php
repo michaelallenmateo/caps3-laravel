@@ -17,7 +17,7 @@ class ProductReviewsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('user_id');
-            $table->integer('rating');
+            $table->integer('rating')->default(0);
             $table->text('title');
             $table->text('content');
             $table->timestamps();

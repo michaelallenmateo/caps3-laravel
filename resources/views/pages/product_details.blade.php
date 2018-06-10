@@ -9,13 +9,23 @@
     </div>
     @endif
 
+    @if(Session::get('errors'))
+      <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+         <h5>There were errors while submitting your review:</h5>
+         @foreach($errors->all() as $message)
+            <p>{{$message}}</p>
+         @endforeach
+      </div>
+    @endif
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <h5 class="modal-title" id="exampleModalLabel">Reminder: All fields are required to be filled in for your review to be posted!</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -29,21 +39,21 @@
       <input type="hidden" name="user_id" value="">
       <div class="modal-body">
         <h5>Give a title for this review</h5>
-        <textarea class="form-control" style="min-width: 100%" placeholder="" name="title"></textarea>
+        <input type="text" class="form-control" style="min-width: 100%" placeholder="" name="title" required></input>
         <h5>Share to others your experience with this product</h5>
-        <textarea class="form-control" style="min-width: 100%" placeholder="" name="content"></textarea>
+        <input class="form-control" style="min-width: 100%" placeholder="" name="content" required></input>
         <h5>How would you rate this product?</h5>
          <div class='starrr' id='star1'></div>
         <div>&nbsp;
         <span class='your-choice-was' style='display: none;'>
         You rate it as <span class='choice'></span> star.
       </span>
-      <input type="hidden" name="rating" value="3">
+      {{-- <input type="hidden" name="rating" value="3"> --}}
     </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">Submit this review</button>
       </div>
     </form>
 
@@ -71,7 +81,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">Submit this review</button>
       </div>
     </form>
 
@@ -105,25 +115,34 @@
       <h1 class="product-name">{{$products->name}}</h1>
       <div class="group">
         <div data-rating="4.5" class="rate"></div>
-        <div class="rate-point"><strong>stars here </strong><span>4.5</span></div>
-        <div class="rate-point">(403 user ratings)</div>
+        <div class="rate-point"><strong><p>
+                    @for ($i=1; $i <= 5 ; $i++)
+                      <span class="glyphicon glyphicon-star{{ ($i <= $products->reviews->avg('rating')) ? '' : '-empty'}}"></span>
+                    @endfor
+                    {{ number_format($products->reviews->avg('rating'), 1)}} stars
+                  </p></strong></div>
+        <div class="rate-point"><strong>{{count($products->reviews)}} Reviews</strong></div>
         <div class="order-count"><strong>3472 </strong><span>likes</span></div>
       </div>
       <div class="price">
         <div class="price-div"><strong class="price">Price:</strong>&#8369 {{ number_format($products->price, 2)}}</div>
-        <div class="clearfix"></div>
+        {{-- <div class="clearfix"></div> --}}
       </div>
+      <div class="prd_category">
+        <div class="prod_category"><strong class="category">Category:</strong>{{$products->category->title}}
+        </div>
+      </div> 
       <div class="brand">
         <div class="brand-div"><strong class="brand">Brand:</strong>{{$products->brand}}</div>
-        <div class="clearfix"></div>
+        {{-- <div class="clearfix"></div> --}}
       </div>
       <div class="description">
         <div class="left-col">
-            <h5>Product Details:</h5>
-            <ul class="list">
-              <li><span>{{$products->description}}</span></li>
+            <h5><strong>Product Details:</strong></h5>
+            {{-- <ul class="list"> --}}
+              <p><span>{{$products->description}}</span></p>
               
-          </ul>
+          {{-- </ul> --}}
         </div>
         <div class="right-col"></div>
         <div class="clearfix"></div>
@@ -156,6 +175,25 @@
     </div> --}}
 
     <div>
+
+      {{-- show the avarage rating --}}
+              <div class="ratings">
+                  <p class="pull-right">{{count($products->reviews)}} Reviews 
+                    {{-- {{ Str_plural('review', $products->rating_count)}} --}}</p>
+                  <p>
+                    @for ($i=1; $i <= 5 ; $i++)
+                      <span class="glyphicon glyphicon-star{{ ($i <= $products->reviews->avg('rating')) ? '' : '-empty'}}"></span>
+                    @endfor
+                    {{ number_format($products->reviews->avg('rating'), 1)}} stars
+                  </p>
+              </div>
+
+
+      {{-- end of show the average rating --}}
+
+
+
+
       @guest
       <a href="/writereview/{{$products->id}}" class="btn btn-success review">Write a Review</a>
       @else
@@ -164,8 +202,8 @@
     <br>
     </div>
 
-
-              @foreach($products->reviews as $review)
+              @if(count($products->reviews)>0)
+              @foreach($products->reviews->sortByDesc('created_at') as $review)
               <hr>
                 <div class="row">
                     <div class="col-md-3">
@@ -189,6 +227,10 @@
                   </div>
                 </div>
               @endforeach
+                @else
+                <h4>No reviews yet on this product</h4>
+                <p>Be the first to write.</p>
+                @endif
 
 
 

@@ -982,16 +982,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.13",
+            "version": "v2.0.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "cbe0b11b78140bc62a921fec33a730fdaa6540d6"
+                "reference": "10bcb46e8f3d365170f6de9d05245aa066b81f09"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/cbe0b11b78140bc62a921fec33a730fdaa6540d6",
-                "reference": "cbe0b11b78140bc62a921fec33a730fdaa6540d6",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/10bcb46e8f3d365170f6de9d05245aa066b81f09",
+                "reference": "10bcb46e8f3d365170f6de9d05245aa066b81f09",
                 "shasum": ""
             },
             "require": {
@@ -1027,7 +1027,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2018-06-06T05:04:48+00:00"
+            "time": "2018-06-08T15:26:40+00:00"
         },
         {
             "name": "psr/container",

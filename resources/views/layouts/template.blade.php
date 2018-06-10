@@ -41,7 +41,7 @@
 	          <li><a href="{{ route('login') }}">Login</a></li>
 	          <li><a href="{{ route('register') }}">Register</a></li>
          @else
-	      	<li><a href="/myreviews">My Reviews </a></li>
+	      	
 	      </ul>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
@@ -51,6 +51,7 @@
 
             <ul class="dropdown-menu">
                 <li class="active"><a href="{{-- routes --}}">My Account</a></li>
+                <li><a href="/myreviews">My Reviews </a></li>
                 <li>
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
