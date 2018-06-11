@@ -101,7 +101,7 @@
       <div class="img-thumbs">
         <div class="slim-scroll">
           <div class="item active">
-            <img src="/image/{{$products->image}}" class="img-responsive">
+            <img src="/image/{{$products->image}}" class="img-responsive details">
           </div>
           
         </div>
@@ -115,7 +115,9 @@
       <h1 class="product-name">{{$products->name}}</h1>
       <div class="group">
         <div data-rating="4.5" class="rate"></div>
-        <div class="rate-point"><strong><p>
+        <div class="rate-point"><strong>
+                    <p>
+                    Average Rating:
                     @for ($i=1; $i <= 5 ; $i++)
                       <span class="glyphicon glyphicon-star{{ ($i <= $products->reviews->avg('rating')) ? '' : '-empty'}}"></span>
                     @endfor

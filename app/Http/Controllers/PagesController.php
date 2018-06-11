@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\Products;
 use \App\Categories;
+use Illuminate\Support\Facades\Input;
 
 class PagesController extends Controller
 {
@@ -31,6 +32,20 @@ class PagesController extends Controller
 
 	function showReviews () {
 		return view('pages.myreviews');
-	}	
+	}
+
+
+
+	function search () {
+	$search = Input::get ( 'search' );
+	$product = Products::where ( 'name', 'LIKE', '%' . $search . '%' )->orWhere ( 'brand', 'LIKE', '%' . $search . '%' )->get ();
+	if (count ( $product ) > 0)
+		return view ( 'pages.searchResult' )->withDetails ( $product )->withQuery ( $search );
+	else
+		return view ( 'pages.searchResult' )->withMessage ( 'No match found. Try again!' );
+	} 
+
+
+
 
 }

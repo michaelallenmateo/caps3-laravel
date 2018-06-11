@@ -1,9 +1,14 @@
+div.demo-preview {
+	margin-top: 5%;
+}
+
 .product-details-section {
     width: 80%;
 }
 
 
-.img-responsive {
+.img-responsive.details {
+    height: 350px;
     padding-left: 20%;
 }
 

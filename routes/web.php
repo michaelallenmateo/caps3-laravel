@@ -20,6 +20,9 @@ Route::get('/products/category/{id}', 'PagesController@showByCategory');
 Route::get('/products/{id}', 'ProductsController@productDetails');
 
 
+// route search bar
+Route::post ( '/search_result', 'PagesController@search');
+
 
 Route::middleware('auth')->group( function() {
 	Route::get('/writereview/{id}', 'PagesController@writeReview');

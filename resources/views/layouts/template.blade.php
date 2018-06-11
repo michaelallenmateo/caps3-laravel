@@ -24,33 +24,48 @@
 	    </div>
 	    <ul class="navbar-nav ml-auto">
 	    		@foreach(\App\Categories::all() as $category)
-	    	<li class="categories">
-				<a href="/products/category/{{$category->id}}">
-					<li>{{$category->title}}</li>
-				</a>
-		 	<li>	
-		 		@endforeach
-        <li class="categories">
-        <a href="/">
-          <li>ALL PRODUCTS</li>
-        </a>
-      <li>  
-	    </ul>
-	    <ul class="nav navbar-nav navbar-right">
-	      @guest
+    	    	  <li class="categories">
+    				    <a href="/products/category/{{$category->id}}">
+    					     <li>{{$category->title}}</li>
+    				    </a>
+    		 	    </li>
+		 		  @endforeach
+          <li class="categories">
+            <a href="/">
+              <li>ALL PRODUCTS</li>
+            </a>
+          <li>  
+          {{-- search bar --}}
+          <form action="/search_result" method="POST" role="search">
+            {{ csrf_field() }}
+            <div class="input-group search">
+              <input type="text" class="form-control search" name="search"
+                placeholder="Search products"> <span class="input-group-btn">
+                <button type="submit" class="btn btn-default">
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+              </span>
+            </div>
+          </form>
+          {{-- end of search bar --}}
+      </ul>
+
+
+	     <ul class="nav navbar-nav navbar-right">
+	       @guest
 	          <li><a href="{{ route('login') }}">Login</a></li>
 	          <li><a href="{{ route('register') }}">Register</a></li>
          @else
 	      	
-	      </ul>
-        <ul class="nav navbar-nav navbar-right">
+	     </ul>
+       <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                 {{ Auth::user()->firstname }} <span class="caret"></span>
             </a>
 
             <ul class="dropdown-menu">
-                <li class="active"><a href="{{-- routes --}}">My Account</a></li>
+                <li class=""><a href="{{-- routes --}}">My Account</a></li>
                 <li><a href="/myreviews">My Reviews </a></li>
                 <li>
                     <a href="{{ route('logout') }}"
@@ -67,9 +82,9 @@
           </li>
         </ul>
         @endguest
-	    </ul>
+	    </li>
 	  </div>
-	</nav>
+</nav>
 	@yield('content')
 
 	{{-- footer --}}
