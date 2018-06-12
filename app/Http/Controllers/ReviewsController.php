@@ -42,28 +42,37 @@ class ReviewsController extends Controller
     }
 
 
-    // function update (Request $request) {
-    //     $rules = array(
-    //         // 'product_id' => 'required',
-    //         // 'user_id' => 'required',
-    //         // 'rating' => 'required|integer|between:1,5',
-    //         // 'title' => 'required',
-    //         'content' => 'required'
-    //     );
-    //     $this->validate($request, $rules);
 
-    //     $reviews = new Reviews;
-    //     // $reviews->product_id = $request->product_id;
-    //     // $reviews->user_id = $request->user_id;
-    //     // $reviews->rating = $request->rating;
-    //     // $reviews->title = $request->title;
-    //     $reviews->content = $request->content;
-    //     $reviews->save();
+    function editReview($id) {
+        $review = Reviews::find($id);
 
-    //     Session::flash('success_message', 'Your review was successfully submitted. Thank You!');
+        return view('pages.editReview', compact('review'));
+    }
 
-    //     return redirect()->back();
-    // }
+
+
+    function updateReview (Request $request, $id) {
+        $rules = array(
+            'product_id' => 'required',
+            'user_id' => 'required',
+            'review_title' => 'required',
+            'review_content' => 'required',
+            'review_rating' => 'required|integer|between:1,5'
+        );
+        $this->validate($request, $rules);
+
+        $reviews = Reviews::find($id);
+        $reviews->product_id = $request->product_id;
+        $reviews->user_id = $request->user_id;
+        $reviews->rating = $request->review_rating;
+        $reviews->title = $request->review_title;
+        $reviews->content = $request->review_content;
+        $reviews->save();
+
+        Session::flash('success_message', 'Your review was successfully updated. Thank You!');
+
+        return redirect()->back();
+    }
 
 
 }

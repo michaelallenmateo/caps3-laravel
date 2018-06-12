@@ -205,7 +205,9 @@
     </div>
 
               @if(count($products->reviews)>0)
-              @foreach($products->reviews->sortByDesc('created_at') as $review)
+              {{-- direct $reviews is used sinced we set up ($products->reviews relationship in productsController) --}}
+              {{-- @foreach($products->reviews->sortByDesc('updated_at') as $review) --}}
+              @foreach($reviews->sortByDesc('updated_at') as $review)
               <hr>
                 <div class="row">
                     <div class="col-md-3">
@@ -214,10 +216,16 @@
                         @endfor
                         <br>
 
-                        {{ $review->user ? $review->user->firstname." ".$review->user->lastname : 'User account deleted'}} 
+                        <strong>{{ $review->user ? $review->user->firstname." ".$review->user->lastname : 'User account deleted'}} </strong>
 
                         <br>
-                        <span class="">
+                        <span class=""><strong>Member since:</strong>
+                      {{$review->user->created_at->format('m-d-Y')}}</span> <br>
+                      <span class=""><strong>Contributed Reviews:</strong>
+                      {{count($review->user->reviews)}}</span> <br>
+                      <span class=""><strong>Review Updated:</strong>
+                      {{$review->updated_at->diffForHumans()}}</span> <br>
+                        <span class=""><strong>Review Posted:</strong>
                       {{$review->created_at->diffForHumans()}}</span> 
                     </div>
 
@@ -235,7 +243,9 @@
                 @endif
 
 
-
+        <div class="text-center">
+                  {{$reviews->links()}}
+        </div>
 
 </div>
 

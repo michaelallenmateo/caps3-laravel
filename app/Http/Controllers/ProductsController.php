@@ -10,7 +10,11 @@ class ProductsController extends Controller
 {
     function productDetails($id) {
     	$products = Products::find($id); //SELECT * FROM items;
-    	return view('pages.product_details', compact('products'));
+
+    	$reviews = $products->reviews()->paginate(20);
+
+
+    	return view('pages.product_details', compact('products','reviews'));
     }
 }
 

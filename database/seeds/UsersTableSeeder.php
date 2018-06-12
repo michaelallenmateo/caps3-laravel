@@ -14,9 +14,9 @@ class UsersTableSeeder extends Seeder
     {
         
 
-        \DB::table('users')->delete();
+        \DB::table('Users')->delete();
         
-        \DB::table('users')->insert(array (
+        \DB::table('Users')->insert(array (
             0 => 
             array (
                 'id' => 1,
@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'mike@email.com',
                 'mobile' => '987654321',
                 'address' => 'Phils',
-                'remember_token' => 'CqPloZXTa1mhEWGNkvfDJdj0HE0DmC8PaZsYUn1JdeLBBhkJlii18t4Shmy0',
+                'remember_token' => 'Ufrns5p7XuisoWOd47h5BQcL7boTquyXyKJdhV9XGZ2E1w7o9KrdqXZUchpP',
                 'created_at' => '2018-06-05 05:33:06',
                 'updated_at' => '2018-06-05 05:33:06',
             ),
@@ -76,6 +76,36 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => NULL,
                 'created_at' => '2018-06-05 05:40:41',
                 'updated_at' => '2018-06-05 05:40:41',
+            ),
+            4 => 
+            array (
+                'id' => 8,
+                'roles_id' => 1,
+                'firstname' => 'bam',
+                'lastname' => 'mateo',
+                'username' => 'van',
+                'password' => '$2y$10$ssRtAZDLb9Hft6qSEuPEvuO6IcGk6LGur/o/3ICHuovZQXAndav1m',
+                'email' => 'bam@email.com',
+                'mobile' => '12345678998',
+                'address' => 'Makati',
+                'remember_token' => 'wsQWDadLHkI5vFUbIZasKIUUfzk9EUPBLRdLLKaPS69mzDmHI6RgTCXVrGvB',
+                'created_at' => '2018-06-09 01:59:23',
+                'updated_at' => '2018-06-09 01:59:23',
+            ),
+            5 => 
+            array (
+                'id' => 9,
+                'roles_id' => 2,
+                'firstname' => 'admin',
+                'lastname' => 'admin',
+                'username' => 'admin',
+                'password' => '$2y$10$sw91.62ZfQbiPga4zAwOD.btoGYgOa7H742kRRF8XOox1OR2OZy02',
+                'email' => 'admin@email.com',
+                'mobile' => '123456789',
+                'address' => 'Philippines',
+                'remember_token' => 'YcVdcDjZNpSF8Nraxyf7THTTn2Xm99Qo6KN6ZaeB6VKsUHXmnbv9ZuVyFokZ',
+                'created_at' => '2018-06-12 08:55:20',
+                'updated_at' => '2018-06-12 08:55:20',
             ),
         ));
         

@@ -1,45 +1,13 @@
 @extends('layouts.template')
 @section('title','BeautyTalk | Latest Reviews and Trends on beauty products')
 @section('content')
-      
-      <style type="text/css">
-          div.jumbotron {
-            padding: 0;
-            margin: 0;
-            background-image: url(/image/index1.jpg),url(/image/index2.jpg) ;
-            background-position: left,right;
-            background-repeat: no-repeat, no-repeat;
-            background-size: 50% auto;
-          }
-
-          div.container.jumbo {
-            padding-top: 50px;
-            padding-left: 15%;
-            background-color: rgba(0,0,0,0.3);
-            width: auto;
-          }
-
-          h1.display-4,
-          p.lead {
-            color: rgba(0,0,0,1);
-            
-          }
-          
-      </style>  
-    
-    <div class="jumbotron jumbotron-fluid">
-  <div class="container jumbo">
-    <h1 class="display-4">Let your experience be heard</h1>
-    <p class="lead">Be part of BeautyTalk latest reviews and trends on beauty products.</p>
-  </div>
-</div>
-
+ 
 
     <div class="container index">
         <div class="row">
-            <h2 style="width: auto;text-align: center;">Recently Added</h2>
+            
             @if(count($products)>0)
-                @foreach($products->sortByDesc('created_at') as $product)
+                @foreach($products as $product)
                 <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail">
                         <a href="/products/{{$product->id}}" style="list-style:none;">
@@ -66,9 +34,6 @@
             @else
                 <h3>No listed products yet under this category</h3>
             @endif    
-        </div>
-        <div class="text-center">
-                  {{$products->links()}}
         </div>
     </div>
 

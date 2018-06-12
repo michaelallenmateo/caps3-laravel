@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Input;
 class PagesController extends Controller
 {
     function index (){
-    	$products = Products::all(); //SELECT * FROM items;
+    	$products = Products::paginate(6); //SELECT * FROM items;
 
     	return view('pages.index', compact('products'));
 
@@ -21,7 +21,7 @@ class PagesController extends Controller
 		$category = Categories::find($id);
 		$products = $category->products;
 
-		return view('pages.index', compact('products'));
+		return view('pages.productByCategory', compact('products'));
 	}
 
 	function writeReview($id) {
@@ -45,7 +45,9 @@ class PagesController extends Controller
 		return view ( 'pages.searchResult' )->withMessage ( 'No match found. Try again!' );
 	} 
 
-
+	function admin () {
+		return view('pages.admin');
+	}
 
 
 }

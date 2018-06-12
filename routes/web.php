@@ -29,7 +29,9 @@ Route::middleware('auth')->group( function() {
 	Route::post('/writereview/{id}', 'ReviewsController@postReview');
 	Route::get('/myreviews', 'PagesController@showReviews');
 	Route::delete('/myreviews/{id}/delete', 'ReviewsController@delete');
-	// Route::patch('/myreviews/{id}/edit', 'ReviewsController@update');
+	Route::get('/myreviews/{id}/edit', 'ReviewsController@editReview');
+	Route::patch('/myreviews/{id}/edit', 'ReviewsController@updateReview');
+	Route::get('/admin', 'PagesController@admin');
 
 });	
 

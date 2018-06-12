@@ -16,15 +16,7 @@ class Products extends Model
 
 
 
-  //   public function recalculateRating($rating)
-  //   {
-  //   	// $reviews = $this->reviews()->notSpam()->approved();
-  //   	$reviews = $this->reviews();
-	 //    $avgRating = $reviews->avg('rating');
-		// $this->ave_rating = round($avgRating,1);
-		// $this->rating_count = $reviews->count();
-  //   	$this->save();
-  //   }
+ 
 
 
 

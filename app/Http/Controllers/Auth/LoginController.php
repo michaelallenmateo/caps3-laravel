@@ -18,6 +18,15 @@ class LoginController extends Controller
     |
     */
 
+    protected function authenticated($request, $users)
+    {
+        if($users->roles_id == 2){
+            return redirect('/admin');
+        }else{
+            return redirect('/');
+        }
+    }
+
     use AuthenticatesUsers;
 
     /**
@@ -25,7 +34,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    // protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.

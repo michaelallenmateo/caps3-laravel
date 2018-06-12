@@ -8,6 +8,11 @@
 		div.container {
 			min-height: 350px;
 			margin-bottom: 50px;
+
+		}
+
+		div.container.index {
+			margin-top: 50px;
 		}
 
 
@@ -34,6 +39,8 @@
 			color: white;
 			height: 70px;
 			margin: 0;
+			border-color: black;
+			border-radius: 0;
 		}
 
 

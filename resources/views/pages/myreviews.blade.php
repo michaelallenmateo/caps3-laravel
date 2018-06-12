@@ -48,6 +48,7 @@ tr {
 					<th>Brand Name</th>
 					{{-- <th>Description</th> --}}
 					<th>Your review</th>
+					<th>Your rating</th>
 					<th>Actions</th>
 				</tr>
 		@foreach(Auth::user()->reviews as $review)
@@ -61,7 +62,8 @@ tr {
 						<td>{{$review->product->name}}</td> 
 						<td>{{$review->product->brand}}</td> 
 						{{-- <td>{{$review->product->description}}</td>  --}}
-						<td><input type="text" value="{{$review->content}}"></td> 
+						<td>{{$review->content}}</td> 
+						<td>{{$review->rating}} stars</td> 
 						{{-- <td>
 							@if($item->trashed())
 								<small>(already unavailable)</small>
@@ -70,7 +72,7 @@ tr {
 						</td> --}}
 						<td>	
 
-							{{-- <a href="/myreviews/{{$review->id}}/edit" class="btn btn-primary btn-xs">Edit</a> --}}
+							<a href="/myreviews/{{$review->id}}/edit" class="btn btn-primary btn-xs">Edit</a>
 							<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteConfirmation">Delete</button>
 						</td>
 				</tr>
