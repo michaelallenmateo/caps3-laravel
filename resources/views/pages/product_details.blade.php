@@ -3,6 +3,21 @@
 @section('content')
 
 
+<style type="text/css">
+  /*profile-picture -others*/
+    
+
+    span.profile_img_pd img {
+      margin-top: 10px;
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+
+    }
+
+
+</style>
+
     @if(Session::has('success_message'))
     <div class="alert alert-success">
       {{ Session::get('success_message') }}
@@ -215,6 +230,8 @@
                           <span class="glyphicon glyphicon-star{{ ($i <= $review->rating) ? '' : '-empty'}}"></span>
                         @endfor
                         <br>
+
+                        <span class="profile_img_pd"><img src="/image/{{ $review->user->profile_image }}" id="profile_image"></span> <br>
 
                         <strong>{{ $review->user ? $review->user->firstname." ".$review->user->lastname : 'User account deleted'}} </strong>
 

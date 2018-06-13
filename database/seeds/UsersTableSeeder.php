@@ -14,9 +14,9 @@ class UsersTableSeeder extends Seeder
     {
         
 
-        \DB::table('Users')->delete();
+        \DB::table('users')->delete();
         
-        \DB::table('Users')->insert(array (
+        \DB::table('users')->insert(array (
             0 => 
             array (
                 'id' => 1,
@@ -28,9 +28,10 @@ class UsersTableSeeder extends Seeder
                 'email' => 'mike@email.com',
                 'mobile' => '987654321',
                 'address' => 'Phils',
-                'remember_token' => 'Ufrns5p7XuisoWOd47h5BQcL7boTquyXyKJdhV9XGZ2E1w7o9KrdqXZUchpP',
+                'profile_image' => '1528879366.jpg',
+                'remember_token' => 'WFM3DIpXpaEJ1UwxxDQRjNfdRFqBbJjwGiUyM8Jw8YWhfQMltI3xDWXA6rqu',
                 'created_at' => '2018-06-05 05:33:06',
-                'updated_at' => '2018-06-05 05:33:06',
+                'updated_at' => '2018-06-13 08:42:46',
             ),
             1 => 
             array (
@@ -43,6 +44,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'user@email.com',
                 'mobile' => '123456789',
                 'address' => 'Phils',
+                'profile_image' => 'user.png',
                 'remember_token' => 'OzEGSFMcTWqEMX6DALX5LgtBFuuGNWIR4a78vETH4Fo8wdypO3M4sCvivfwB',
                 'created_at' => '2018-06-05 05:37:12',
                 'updated_at' => '2018-06-05 05:37:12',
@@ -58,9 +60,10 @@ class UsersTableSeeder extends Seeder
                 'email' => 'user2@email.com',
                 'mobile' => '987654321',
                 'address' => 'Phils',
-                'remember_token' => 'wqjKEzwbv5NWy95B3xjVljPdb4kdWHnlonROm4ojWo7OPKwon2QYz9TyfUmY',
+                'profile_image' => '1528894865.png',
+                'remember_token' => 'M1ysuvw4PRszCVrTj5zsTrNKe6qCi9bSUGnHj8GU8C1hznz7h1g1j7ijkzrT',
                 'created_at' => '2018-06-05 05:38:19',
-                'updated_at' => '2018-06-05 05:38:19',
+                'updated_at' => '2018-06-13 13:01:05',
             ),
             3 => 
             array (
@@ -73,6 +76,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'user3@email.com',
                 'mobile' => '654123789',
                 'address' => 'Phils',
+                'profile_image' => 'user.png',
                 'remember_token' => NULL,
                 'created_at' => '2018-06-05 05:40:41',
                 'updated_at' => '2018-06-05 05:40:41',
@@ -81,16 +85,17 @@ class UsersTableSeeder extends Seeder
             array (
                 'id' => 8,
                 'roles_id' => 1,
-                'firstname' => 'bam',
-                'lastname' => 'mateo',
+                'firstname' => 'Bam',
+                'lastname' => 'Mateo',
                 'username' => 'van',
                 'password' => '$2y$10$ssRtAZDLb9Hft6qSEuPEvuO6IcGk6LGur/o/3ICHuovZQXAndav1m',
                 'email' => 'bam@email.com',
                 'mobile' => '12345678998',
                 'address' => 'Makati',
-                'remember_token' => 'wsQWDadLHkI5vFUbIZasKIUUfzk9EUPBLRdLLKaPS69mzDmHI6RgTCXVrGvB',
+                'profile_image' => '1528894732.jpg',
+                'remember_token' => 'dxavD251OHWTllgU0wJkZPb4ouTRZehobphsdGTT8P5N2EpVyovq7butk3cG',
                 'created_at' => '2018-06-09 01:59:23',
-                'updated_at' => '2018-06-09 01:59:23',
+                'updated_at' => '2018-06-13 12:59:09',
             ),
             5 => 
             array (
@@ -103,6 +108,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'admin@email.com',
                 'mobile' => '123456789',
                 'address' => 'Philippines',
+                'profile_image' => 'user.png',
                 'remember_token' => 'YcVdcDjZNpSF8Nraxyf7THTTn2Xm99Qo6KN6ZaeB6VKsUHXmnbv9ZuVyFokZ',
                 'created_at' => '2018-06-12 08:55:20',
                 'updated_at' => '2018-06-12 08:55:20',

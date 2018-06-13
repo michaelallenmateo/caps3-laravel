@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('mobile');
             $table->string('address');
+            $table->string('profile_image')->default('user.png');;
             $table->rememberToken();
             $table->timestamps();
 

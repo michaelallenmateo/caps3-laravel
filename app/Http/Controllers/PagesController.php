@@ -50,4 +50,9 @@ class PagesController extends Controller
 	}
 
 
+
+	function showAccountDetails () {
+		return view('pages.myAccountDetails');
+	}
+
 }

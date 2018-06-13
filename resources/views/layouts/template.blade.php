@@ -60,12 +60,13 @@
 	     </ul>
        <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
+            <span class="profile_img"><img src="/image/{{ Auth::user()->profile_image }}" id="profile_image"></span>
             <a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                 {{ Auth::user()->firstname }} <span class="caret"></span>
             </a>
 
             <ul class="dropdown-menu">
-                <li class=""><a href="{{-- routes --}}">My Account</a></li>
+                <li class=""><a href="/myaccount">My Account</a></li>
                 <li><a href="/myreviews">My Reviews </a></li>
                 <li>
                     <a href="{{ route('logout') }}"
@@ -77,6 +78,11 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                     </form>
+                </li>
+                <li>
+                    <a href="/changePassword">
+                       Change Password
+                    </a>
                 </li>
             </ul>
           </li>
@@ -96,7 +102,6 @@
     <ul>
       <li>About</li>
       <li>Corporate Responsibility</li>
-      <li>Lets do business</li>
       <li>Careers</li>
     </ul>
   </div>

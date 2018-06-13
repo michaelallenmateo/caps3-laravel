@@ -31,6 +31,10 @@ Route::middleware('auth')->group( function() {
 	Route::delete('/myreviews/{id}/delete', 'ReviewsController@delete');
 	Route::get('/myreviews/{id}/edit', 'ReviewsController@editReview');
 	Route::patch('/myreviews/{id}/edit', 'ReviewsController@updateReview');
+	Route::get('/myaccount', 'PagesController@showAccountDetails');
+	Route::get('/myaccount/{id}/edit', 'UsersController@editAccount');
+	Route::delete('/myaccount/{id}/delete', 'UsersController@deleteAccount');
+	Route::patch('/myaccount/{id}/edit', 'UsersController@updateAccount');
 	Route::get('/admin', 'PagesController@admin');
 
 });	
