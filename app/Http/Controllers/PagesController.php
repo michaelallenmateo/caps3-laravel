@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\User;
 use \App\Products;
 use \App\Categories;
+use \App\Reviews;
 use Illuminate\Support\Facades\Input;
 
 class PagesController extends Controller
@@ -45,14 +47,40 @@ class PagesController extends Controller
 		return view ( 'pages.searchResult' )->withMessage ( 'No match found. Try again!' );
 	} 
 
-	function admin () {
-		return view('pages.admin');
-	}
-
-
 
 	function showAccountDetails () {
 		return view('pages.myAccountDetails');
+	}
+
+	// admin page
+	function admin () {
+		//so that database details can be accessed
+		$productsCount = Products::all();
+		$products = Products::orderBy('created_at', 'desc')->limit(5)->get();;
+		$reviewsCount = Reviews::all();
+		$reviews = Reviews::orderBy('created_at', 'desc')->limit(5)->get();;
+		$userCount = User::all();
+		$users = User::orderBy('created_at', 'desc')->limit(5)->get();
+		$categories = Categories::all();
+
+		return view('pages.admin', compact('products','reviews','users','userCount','reviewsCount','productsCount'));
+	}
+
+	function adminAddProducts () {
+		return view('pages.adminAddProducts');
+	}
+	
+
+	function adminEditProducts () {
+
+		$products = Products::all();
+		return view('pages.adminEditProducts', compact('products'));
+	}
+
+
+	function adminEditProductsForm ($id){
+		$products = Products::find($id);
+		return view ('pages.adminEditProductsForm', compact('products'));
 	}
 
 }

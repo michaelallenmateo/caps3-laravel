@@ -14,7 +14,8 @@ table {
 td, th {
     border: 1px solid #dddddd;
     text-align: center;
-    width: 20%;
+    width: auto;
+    padding: 5px;
 }
 
 
@@ -49,6 +50,7 @@ tr {
 					{{-- <th>Description</th> --}}
 					<th>Your review</th>
 					<th>Your rating</th>
+					<th>Status</th>
 					<th>Actions</th>
 				</tr>
 		@foreach(Auth::user()->reviews as $review)
@@ -64,6 +66,7 @@ tr {
 						{{-- <td>{{$review->product->description}}</td>  --}}
 						<td>{{$review->content}}</td> 
 						<td>{{$review->rating}} stars</td> 
+						<td>Status here</td> 
 						{{-- <td>
 							@if($item->trashed())
 								<small>(already unavailable)</small>

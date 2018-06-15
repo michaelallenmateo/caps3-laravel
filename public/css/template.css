@@ -16,13 +16,19 @@
 			margin-bottom: 10%;
 		}
 
+		div.collapse {
+			background-color: black!important;
+			color: white;
+			align-content: center;
+		}
+
 
 		h3 {
 			text-align: center;
 		}
 		img#mainlogo {
 			height: 40px;
-			width: 160px;
+			width: 150px;
 		}
 		.item {
 			margin-bottom: 50px;
@@ -89,7 +95,8 @@
 		div.input-group.search {
 			padding-left: 20px;
 			padding-top: 0;
-			margin-left: 15px;
+			margin-left: 5px;
+			margin-right: 10px;
 			margin-top: -5px;
 			width: 200px;
 		}

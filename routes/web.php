@@ -37,6 +37,16 @@ Route::middleware('auth')->group( function() {
 	Route::patch('/myaccount/{id}/edit', 'UsersController@updateAccount');
 	Route::get('/admin', 'PagesController@admin');
 
+	//admin add products
+	Route::get('/admin/product_add', 'PagesController@adminAddProducts');
+	Route::post('/admin/product_add', 'ProductsController@adminAddProducts');
+	//admin edit product
+	Route::get('/admin/product_edit', 'PagesController@adminEditProducts');
+	Route::get('/admineditprod/{id}', 'PagesController@adminEditProductsForm');
+	Route::patch('/admineditprod/{id}', 'ProductsController@adminEditProductsUpdate');
+	//admin delete product
+	Route::delete('/admineditprodDelete/{id}', 'ProductsController@adminDeleteProduct');
+
 });	
 
 
@@ -46,3 +56,11 @@ Auth::routes();
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
