@@ -18,13 +18,28 @@ class ReviewsController extends Controller
         );
         $this->validate($request, $rules);
 
- 		$reviews = new Reviews;
- 		$reviews->product_id = $request->product_id;
- 		$reviews->user_id = $request->user_id;
- 		$reviews->rating = $request->rating;
+ 		// $reviews = new Reviews;
+ 		// $reviews->product_id = $request->product_id;
+ 		// $reviews->user_id = $request->user_id;
+ 		// $reviews->rating = $request->rating;
+   //      $reviews->title = $request->title;
+   //      $reviews->content = $request->content;
+ 		// $reviews->save();
+
+
+        $reviews = Reviews::firstOrNew([
+          'product_id' => $request->product_id,
+          'user_id' => $request->user_id,
+        ]);
+
+
+
+        $reviews->product_id = $request->product_id;
+        $reviews->user_id = $request->user_id;
+        $reviews->rating = $request->rating;
         $reviews->title = $request->title;
         $reviews->content = $request->content;
- 		$reviews->save();
+        $reviews->save();
 
         Session::flash('success_message', 'Your review was successfully submitted. Thank You!');
 

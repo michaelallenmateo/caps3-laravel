@@ -23,7 +23,7 @@ tr {
 	width: auto;
 }
 
-img {
+img.profile {
       margin-top: 10px;
       width: 75px;
       height: 75px;
@@ -66,7 +66,7 @@ img {
 						<td>{{Auth::user()->lastname}}</td> 
 						<td>{{Auth::user()->username}}</td> 
 						<td>{{Auth::user()->email}}</td> 
-						<td><img src="/image/{{Auth::user()->profile_image}}"></td> 
+						<td><img src="/image/{{Auth::user()->profile_image}}" class="profile"></td> 
 						
 						<td>	
 

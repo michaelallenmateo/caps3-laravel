@@ -40,10 +40,10 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Reminder: All fields are required to be filled in for your review to be posted!</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+        <h5 class="modal-title" id="exampleModalLabel" style="color: red;">Important Reminder: All fields are required to be filled in for your review to be posted! If this is your second time to review the same product, your initial review will be updated.</h5>
       </div>
 
       @guest
