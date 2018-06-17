@@ -83,4 +83,11 @@ class PagesController extends Controller
 		return view ('pages.adminEditProductsForm', compact('products'));
 	}
 
+
+	function adminReviewsApproval () {
+		$reviews = Reviews::all();
+		$products = Products::all();
+		return view ('pages.adminReviewsApproval', compact('reviews','products'));
+	}
+
 }

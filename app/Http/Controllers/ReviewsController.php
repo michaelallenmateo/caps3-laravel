@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use \App\Reviews;
 use Session;
@@ -14,7 +15,8 @@ class ReviewsController extends Controller
             'user_id' => 'required',
             'rating' => 'required|integer|between:0,5',
             'title' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'approved' => 'sometimes'
         );
         $this->validate($request, $rules);
 
@@ -39,9 +41,10 @@ class ReviewsController extends Controller
         $reviews->rating = $request->rating;
         $reviews->title = $request->title;
         $reviews->content = $request->content;
+        $reviews->approved = Input::get('approved', false);
         $reviews->save();
 
-        Session::flash('success_message', 'Your review was successfully submitted. Thank You!');
+        Session::flash('success_message', 'Your review was successfully submitted and will be subject to approval prior to posting. Thank You!');
 
  		return redirect()->back();
     }
@@ -72,7 +75,9 @@ class ReviewsController extends Controller
             'user_id' => 'required',
             'review_title' => 'required',
             'review_content' => 'required',
-            'review_rating' => 'required|integer|between:1,5'
+            'review_rating' => 'required|integer|between:1,5',
+            'approved' => 'sometimes'
+
         );
         $this->validate($request, $rules);
 
@@ -82,12 +87,34 @@ class ReviewsController extends Controller
         $reviews->rating = $request->review_rating;
         $reviews->title = $request->review_title;
         $reviews->content = $request->review_content;
+        $reviews->approved = Input::get('approved', false);
         $reviews->save();
 
-        Session::flash('success_message', 'Your review was successfully updated. Thank You!');
+        Session::flash('success_message', 'Your review was successfully updated and will be subject to approval prior to posting. Thank You!');
 
         return redirect()->back();
     }
 
+    function adminReviewDelete ($id) {
+        $review = Reviews::find($id);
+        $review->delete();
+
+        Session::flash('success_message', 'Review deleted successfully');
+
+        return redirect()->back();
+
+     }
+     
+     function adminReviewsApprove ($id) {
+        $review = Reviews::find($id);
+
+        $review->approved = 1;
+
+        $review->save();
+
+        Session::flash('success_message', 'Review was successfully approved.');
+
+        return redirect()->back();
+    }
 
 }

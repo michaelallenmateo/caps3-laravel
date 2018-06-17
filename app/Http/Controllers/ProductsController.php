@@ -15,8 +15,10 @@ class ProductsController extends Controller
 
     	$reviews = $products->reviews()->paginate(20);
 
+        $approved = $products->reviews->where('approved',true);
 
-    	return view('pages.product_details', compact('products','reviews'));
+
+    	return view('pages.product_details', compact('products','reviews','approved'));
     }
 
     function adminAddProducts (Request $request){

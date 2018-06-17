@@ -57,6 +57,7 @@
         <input type="text" class="form-control" style="min-width: 100%" placeholder="" name="title" required></input>
         <h5>Share to others your experience with this product</h5>
         <input class="form-control" style="min-width: 100%" placeholder="" name="content" required></input>
+        <input name="approved" value="0" readonly></input>
         <h5>How would you rate this product?</h5>
          <div class='starrr' id='star1'></div>
         <div>&nbsp;
@@ -134,11 +135,11 @@
                     <p>
                     Average Rating:
                     @for ($i=1; $i <= 5 ; $i++)
-                      <span class="glyphicon glyphicon-star{{ ($i <= $products->reviews->avg('rating')) ? '' : '-empty'}}"></span>
+                      <span class="glyphicon glyphicon-star{{ ($i <= $approved->avg('rating')) ? '' : '-empty'}}"></span>
                     @endfor
-                    {{ number_format($products->reviews->avg('rating'), 1)}} stars
+                    {{ number_format($products->reviews->where('approved',true)->avg('rating'), 1)}} stars
                   </p></strong></div>
-        <div class="rate-point"><strong>{{count($products->reviews)}} Reviews</strong></div>
+        <div class="rate-point"><strong>{{count($products->reviews->where('approved',true))}} Reviews</strong></div>
         <div class="order-count"><strong>3472 </strong><span>likes</span></div>
       </div>
       <div class="price">
@@ -195,13 +196,13 @@
 
       {{-- show the avarage rating --}}
               <div class="ratings">
-                  <p class="pull-right">{{count($products->reviews)}} Reviews 
+                  <p class="pull-right">{{count($products->reviews->where('approved',true))}} Reviews 
                     {{-- {{ Str_plural('review', $products->rating_count)}} --}}</p>
                   <p>
                     @for ($i=1; $i <= 5 ; $i++)
-                      <span class="glyphicon glyphicon-star{{ ($i <= $products->reviews->avg('rating')) ? '' : '-empty'}}"></span>
+                      <span class="glyphicon glyphicon-star{{ ($i <= $approved->avg('rating')) ? '' : '-empty'}}"></span>
                     @endfor
-                    {{ number_format($products->reviews->avg('rating'), 1)}} stars
+                    {{ number_format($products->reviews->where('approved',true)->avg('rating'), 1)}} stars
                   </p>
               </div>
 
@@ -218,11 +219,13 @@
         @endguest
     <br>
     </div>
+              @if(count($products->reviews->where('approved',true)) > 0) 
 
-              @if(count($products->reviews)>0)
+              {{-- if statement if review is approved first prior to posting --}}
+              {{-- @if(count($products->reviews)>0) --}}{{-- if statement no checking of approval--}}
               {{-- direct $reviews is used sinced we set up ($products->reviews relationship in productsController) --}}
               {{-- @foreach($products->reviews->sortByDesc('updated_at') as $review) --}}
-              @foreach($reviews->sortByDesc('updated_at') as $review)
+              @foreach($reviews->sortByDesc('updated_at')->where('approved',true) as $review)
               <hr>
                 <div class="row">
                     <div class="col-md-3">

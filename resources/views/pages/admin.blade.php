@@ -229,17 +229,16 @@
    </div>
    <div class="col-md-3">
      <div class="well dash-box">
-       <h2><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>{{count($reviewsCount)}}</h2>
-       <h4>Reviews</h4>
+       <h2><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>{{count($reviewsCount->where('approved',true))}}</h2>
+       <h4>Reviews Approved</h4>
      </div>
    </div>
-   {{-- <div class="col-md-3">
+   <div class="col-md-3">
      <div class="well dash-box">
-       <h2><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> 2129</h2>
-       <h4>Visitores</h4>
+       <h2><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>{{count($reviewsCount->where('approved',false))}}</h2>
+       <h4>Reviews Pending Approval</h4>
      </div>
    </div>
-  </div> --}}
 </div>
 <!--Latest User-->
 <div class="panel panel-default">
@@ -316,6 +315,7 @@
         <th>Star Rating</th>
         <th>Review</th>
         <th>Reviewed by:</th>
+        <th>Review Approved?</th>
       </tr>
 
     @foreach($reviews as $review)
@@ -325,6 +325,7 @@
       <td>{{$review->rating}}</td>
       <td>{{$review->content}}</td>
       <td>{{$review->user->firstname." ".$review->user->lastname}}</td>
+      <td>{{$review->approved ? 'Approved' : 'Pending'}}</td>
     </tr>
     @endforeach
     </table>

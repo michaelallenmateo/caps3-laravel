@@ -47,6 +47,16 @@ Route::middleware('auth')->group( function() {
 	//admin delete product
 	Route::delete('/admineditprodDelete/{id}', 'ProductsController@adminDeleteProduct');
 
+	//go to list of all reviews for approval
+	Route::get('/admin/review_approval', 'PagesController@adminReviewsApproval');
+
+	//admin review approval
+	Route::get('/adminReviewApprove/{id}', 'ReviewsController@adminReviewsApprove');
+
+
+	//admin delete review
+	Route::delete('/adminReviewDelete/{id}', 'ReviewsController@adminReviewDelete');
+
 });	
 
 

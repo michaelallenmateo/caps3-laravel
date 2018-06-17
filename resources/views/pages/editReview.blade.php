@@ -76,6 +76,7 @@
 	  			<input type="number"  class="form-control col-sm-6" id="review_rating" name="review_rating" value="{{$review->rating}}" min="1" max="5">
 	    	</div>
 	    </div>
+	    <input name="approved" value="0" readonly hidden></input>
 
 
 	  <div class="form-group"> 

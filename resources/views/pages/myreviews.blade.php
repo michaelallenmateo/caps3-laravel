@@ -18,6 +18,10 @@ td, th {
     padding: 5px;
 }
 
+img.review-img {
+	width: 80px;
+	height: 80px;
+}
 
 
 tr {
@@ -45,12 +49,13 @@ tr {
 <table>
 				<tr>
 					<th>Date</th>
-					<th>Prduct Name</th>
+					<th>Product Name</th>
+					<th>Product Image</th>
 					<th>Brand Name</th>
 					{{-- <th>Description</th> --}}
 					<th>Your review</th>
 					<th>Your rating</th>
-					<th>Status</th>
+					<th>Review Status</th>
 					<th>Actions</th>
 				</tr>
 		@foreach(Auth::user()->reviews as $review)
@@ -62,11 +67,12 @@ tr {
 						{{-- $review is used since it is singular already in the initial foreach --}}
 						<td>{{$review->created_at}}</td> 
 						<td>{{$review->product->name}}</td> 
+						<td><img src="/image/{{$review->product->image}}" class="review-img"></td> 
 						<td>{{$review->product->brand}}</td> 
 						{{-- <td>{{$review->product->description}}</td>  --}}
 						<td>{{$review->content}}</td> 
 						<td>{{$review->rating}} stars</td> 
-						<td>Status here</td> 
+						<td>{{$review->approved ? 'Approved' : 'Pending'}}</td> 
 						{{-- <td>
 							@if($item->trashed())
 								<small>(already unavailable)</small>

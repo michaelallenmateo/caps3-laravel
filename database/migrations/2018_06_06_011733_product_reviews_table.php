@@ -20,6 +20,7 @@ class ProductReviewsTable extends Migration
             $table->integer('rating')->default(0);
             $table->text('title');
             $table->text('content');
+            $table->boolean('approved')->default(0);
             $table->timestamps();
         
 

@@ -19,38 +19,17 @@ class ReviewsTableSeeder extends Seeder
         \DB::table('reviews')->insert(array (
             0 => 
             array (
-                'id' => 1,
-                'product_id' => 1,
-                'user_id' => 1,
-                'rating' => 3,
-                'title' => 'nice',
-                'content' => 'good',
-                'created_at' => '2018-06-08 00:22:47',
-                'updated_at' => '2018-06-08 00:22:47',
-            ),
-            1 => 
-            array (
-                'id' => 2,
-                'product_id' => 2,
-                'user_id' => 1,
-                'rating' => 3,
-                'title' => 'Nice product man',
-                'content' => 'Cheap',
-                'created_at' => '2018-06-08 00:27:04',
-                'updated_at' => '2018-06-08 00:27:04',
-            ),
-            2 => 
-            array (
                 'id' => 3,
                 'product_id' => 2,
                 'user_id' => 1,
                 'rating' => 3,
                 'title' => 'Nice product man',
                 'content' => 'Cheap',
+                'approved' => 1,
                 'created_at' => '2018-06-08 00:28:12',
-                'updated_at' => '2018-06-08 00:28:12',
+                'updated_at' => '2018-06-17 07:35:27',
             ),
-            3 => 
+            1 => 
             array (
                 'id' => 4,
                 'product_id' => 1,
@@ -58,54 +37,23 @@ class ReviewsTableSeeder extends Seeder
                 'rating' => 3,
                 'title' => 'nice3',
                 'content' => 'cheap3',
+                'approved' => 1,
                 'created_at' => '2018-06-08 00:28:41',
-                'updated_at' => '2018-06-08 00:28:41',
+                'updated_at' => '2018-06-17 07:38:35',
             ),
-            4 => 
-            array (
-                'id' => 5,
-                'product_id' => 1,
-                'user_id' => 1,
-                'rating' => 3,
-                'title' => 'nice4',
-                'content' => 'cheap4',
-                'created_at' => '2018-06-08 00:32:57',
-                'updated_at' => '2018-06-08 00:32:57',
-            ),
-            5 => 
-            array (
-                'id' => 6,
-                'product_id' => 2,
-                'user_id' => 1,
-                'rating' => 3,
-                'title' => '123456',
-                'content' => '654321',
-                'created_at' => '2018-06-08 00:48:02',
-                'updated_at' => '2018-06-08 00:48:02',
-            ),
-            6 => 
+            2 => 
             array (
                 'id' => 7,
                 'product_id' => 3,
                 'user_id' => 1,
                 'rating' => 3,
-                'title' => 'nice again',
-                'content' => 'trial again',
+                'title' => 'update this',
+                'content' => 'update this',
+                'approved' => 1,
                 'created_at' => '2018-06-08 00:56:12',
-                'updated_at' => '2018-06-08 00:56:12',
+                'updated_at' => '2018-06-17 12:00:25',
             ),
-            7 => 
-            array (
-                'id' => 8,
-                'product_id' => 3,
-                'user_id' => 1,
-                'rating' => 5,
-                'title' => 'wopwop',
-                'content' => 'given',
-                'created_at' => '2018-06-08 00:56:41',
-                'updated_at' => '2018-06-08 00:56:41',
-            ),
-            8 => 
+            3 => 
             array (
                 'id' => 13,
                 'product_id' => 4,
@@ -113,8 +61,21 @@ class ReviewsTableSeeder extends Seeder
                 'rating' => 4,
                 'title' => 'nicer',
                 'content' => 'nicer',
+                'approved' => 1,
                 'created_at' => '2018-06-08 06:34:07',
-                'updated_at' => '2018-06-08 06:34:07',
+                'updated_at' => '2018-06-17 07:36:20',
+            ),
+            4 => 
+            array (
+                'id' => 20,
+                'product_id' => 4,
+                'user_id' => 8,
+                'rating' => 1,
+                'title' => 'check if will be reapproved and will affect rating',
+                'content' => 'check if will be reapproved and will affect rating',
+                'approved' => 1,
+                'created_at' => '2018-06-17 14:54:15',
+                'updated_at' => '2018-06-17 15:28:03',
             ),
         ));
         

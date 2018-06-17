@@ -60,10 +60,10 @@
                         <div class="ratings">
                             <strong>Rating:</strong>
                             @for ($i=1; $i <= 5 ; $i++)
-                              <span class="glyphicon glyphicon-star{{ ($i <= $product->reviews->avg('rating')) ? '' : '-empty'}}"></span>
+                              <span class="glyphicon glyphicon-star{{ ($i <= $product->reviews->where('approved',true)->avg('rating')) ? '' : '-empty'}}"></span>
                             @endfor
                             {{-- {{ number_format($product->reviews->avg('rating'), 1)}} stars --}}
-                            <p><strong>{{count($product->reviews)}} Reviews</strong></p>
+                            <p><strong>{{count($product->reviews->where('approved',true))}} Reviews</strong></p>
                         </div>
                     </div> {{-- end of div thumbnail --}}
                     
