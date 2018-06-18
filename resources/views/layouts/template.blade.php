@@ -88,7 +88,7 @@
                     </form>
                 </li>
                 <li>
-                    <a href="/changePassword">
+                    <a href="/changePassword/{{ Auth::user()->id }}">
                        Change Password
                     </a>
                 </li>

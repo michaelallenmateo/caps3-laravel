@@ -9,7 +9,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-	<title></title>
+	<title>{{ config('app.name', 'BeautyTalk | Latest Reviews and Trends on beauty products') }}</title>
+  <link rel="icon" type="image/gif/png" href="/image/tablogo.png">
 </head>
 <body>
 
