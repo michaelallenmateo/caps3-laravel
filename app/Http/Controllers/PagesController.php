@@ -90,4 +90,10 @@ class PagesController extends Controller
 		return view ('pages.adminReviewsApproval', compact('reviews','products'));
 	}
 
+
+	function adminUserList () {
+		$users = User::all();
+		return view ('pages.adminListUsers',compact('users'));
+	}
+
 }

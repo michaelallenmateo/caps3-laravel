@@ -102,10 +102,11 @@ tr {
   width: auto;
 }
 
-img {
+img.profile {
       margin-top: 10px;
       width: 90px;
       height: 75px;
+      border-radius: 50%; 
 
     }
 
@@ -161,7 +162,7 @@ div.container-fluid {
 	@if(Session::get('errors'))
       <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-         <h5>There were errors while submitting your product update:</h5>
+         <h5>There were errors while requesting the action</h5>
          @foreach($errors->all() as $message)
             <p>{{$message}}</p>
          @endforeach
@@ -174,46 +175,54 @@ div.container-fluid {
     </div>
     @endif
 
-@if(count($reviews->where('approved',false))>0)
-  <h1>Product reviews for approval</h1>
+@if(count($users)>0)
+  <h1>User account list</h1>
 
     
 
 
 <table>
         <tr>
-          <th>Date of Review</th>
-          <th>Product Name</th>
-          <th>Posted by</th>
-          <th>Star Rating</th>
-          <th>Title</th>
-          <th>Content</th>
+          <th>Date account created</th>
+          <th>Roles</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Profile Image</th>
           <th>Actions</th>
         </tr>
-        {{-- @if($reviews->where('approved',true)->count() > 0) --}}
-        @foreach($reviews->where('approved',false)->sortByDesc('updated_at') as $review)
+        
+        @foreach($users as $user)
         <tr>
-            <td>{{$review->created_at}}</td> 
-            <td>{{$review->product->name}}</td> 
-            <td>{{$review->user->firstname." ".$review->user->lastname}}</td> 
-            <td>{{$review->rating}}</td> 
-            <td>{{$review->title}}</td> 
-            <td>{{$review->content}}</td> 
+            <td>{{$user->created_at}}</td> 
+            <td>{{$user->role->title}}</td> 
+            <td>{{$user->firstname}}</td> 
+            <td>{{$user->lastname}}</td> 
+            <td>{{$user->username}}</td> 
+            <td>{{$user->email}}</td> 
+            <td>{{$user->address}}</td> 
+            <td><img src="/image/{{$user->profile_image}}" class="profile"></td> 
             
             
             <td>  
+              @if($user->role->title =="admin")
+              <a href="/adminRemoveAdmin/{{$user->id}}" class="btn btn-danger btn-xs">Remove as Admin</a>
+              
 
-              <a href="/adminReviewApprove/{{$review->id}}" class="btn btn-primary btn-xs">Approve</a>
-              <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteProdConfirm">Delete</button>
+              @else
+              <a href="/adminMakeAdmin/{{$user->id}}" class="btn btn-primary btn-xs">Add as admin</a>
+              @endif
+              <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteUserConfirm{{$user->id}}">Delete</button>
+
             </td>
         </tr>
         
-     @endforeach
-    {{-- @endif	 --}}
 
 
     <!-- Modal for delete-->
-      <div id="deleteProdConfirm" class="modal fade" role="dialog">
+      <div id="deleteUserConfirm{{$user->id}}" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
           <!-- Modal content-->
@@ -223,10 +232,10 @@ div.container-fluid {
               <h4 class="modal-title">Warning: This action is irreversible !</h4>
             </div>
             <div class="modal-body">
-             Are you sure you want to delete this product review?
+             Are you sure you want to delete this user account?
             </div>
             <div class="modal-footer">
-                <form method="POST" action="/adminReviewDelete/{{$review->id}}">
+                <form method="POST" action="/adminDeleteUser/{{$user->id}}">
                   {{ csrf_field() }}
                   {{ method_field('DELETE') }}
                   <button class="btn btn-danger">Proceed</button>
@@ -237,7 +246,37 @@ div.container-fluid {
           </div>
 
         </div>
-      </div>
+      </div><!-- end of modal for delete account -->
+     @endforeach
+
+      <!-- Modal for delete-->
+      {{-- <div id="removeAsAdmin" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Warning</h4>
+            </div>
+            <div class="modal-body">
+             Are you sure you want to remove this account as admin?
+            </div>
+            <div class="modal-footer">
+                <form method="POST" action="/adminReviewDelete/{{$user->id}}">
+                  {{ csrf_field() }}
+                  {{ method_field('DELETE') }}
+                  <button class="btn btn-danger">Proceed</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                </form>
+                  
+            </div>
+          </div>
+
+        </div>
+      </div> --}} <!-- end of modal for delete as admin -->
+
+
 
 
       </table>
@@ -245,11 +284,11 @@ div.container-fluid {
 </div>
 
 @else 
-<h2>No review for approval</h2>
+<h2>No user registered account yet</h2>
 @endif {{-- endif if count review->not approved --}}
 
 
-@endif
+@endif <!-- endif user check if not admin  -->
 
 
 

@@ -63,4 +63,37 @@ class UsersController extends Controller
     }
 
 
+    function adminMakeAdmin ($id) {
+        $users = User::find($id);
+
+        $users->roles_id =2;
+
+        $users->save();
+
+        Session::flash('success_message', 'Another Admin was successfully added.');
+
+        return redirect()->back();
+    }
+
+    function adminRemoveAdmin ($id) {
+        $users = User::find($id);
+
+        $users->roles_id =1;
+
+        $users->save();
+
+        Session::flash('success_message', 'Account was successfully removed as Admin.');
+
+        return redirect()->back();
+    }
+
+    function adminDeleteUser($id) {
+        $users = User::find($id);
+        $users->delete();
+
+        Session::flash('success_message', 'User account was successfully deleted');
+
+        return redirect()->back();
+    }
+
 }

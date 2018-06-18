@@ -203,7 +203,14 @@
           <h4>Reviews Management</h4>
 		  	<a href="/admin/review_approval" class="btn btn-success btn-md" style="width: 60%;">Approve Reviews</a>
 		        </div>
+
+            <div class="well">
+          <h4>Users Management</h4>
+        <a href="/admin/userAccountList" class="btn btn-success btn-md" style="width: 60%;">Manage Users</a>
+            </div>
       </div>
+
+
 
 
 

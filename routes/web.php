@@ -57,6 +57,17 @@ Route::middleware('auth')->group( function() {
 	//admin delete review
 	Route::delete('/adminReviewDelete/{id}', 'ReviewsController@adminReviewDelete');
 
+	//admin user account list
+	Route::get('/admin/userAccountList', 'PagesController@adminUserList');
+
+	//admin add another admin
+	Route::get('/adminMakeAdmin/{id}','UsersController@adminMakeAdmin');
+
+	//admin remove another admin
+	Route::get('/adminRemoveAdmin/{id}','UsersController@adminRemoveAdmin');
+	//admin can delete a user account
+	Route::delete('/adminDeleteUser/{id}','UsersController@adminDeleteUser');
+
 });	
 
 
