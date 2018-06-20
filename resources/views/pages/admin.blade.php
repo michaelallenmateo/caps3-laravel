@@ -86,6 +86,17 @@ span.profile_img img {
       border-radius: 50%;
 
     }
+
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+  background-color: black;
+  color: white;
+}    
+
+.dropdown-menu>li>a:hover {
+  color: white;
+  background-color: black;
+}
 /*.navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
@@ -278,7 +289,7 @@ span.profile_img img {
   <div class="panel-heading"style="background-color:  black;color:white;">
     <h3 class="panel-title">Latest Account Created</h3>
   </div>
-  <div class="panel-body">
+  <div class="panel-body table-responsive">
     <table class="table table-striped table-hover">
       <tr>
         <th>Date Joined</th>
@@ -306,7 +317,7 @@ span.profile_img img {
   <div class="panel-heading"style="background-color:  black;color:white;">
     <h3 class="panel-title">Latest Product Added</h3>
   </div>
-  <div class="panel-body">
+  <div class="panel-body table-responsive">
     <table class="table table-striped table-hover">
       <tr>
         <th>Date Added</th>
@@ -340,7 +351,7 @@ span.profile_img img {
   <div class="panel-heading"style="background-color:  black;color:white;">
     <h3 class="panel-title">Latest Reviews Created</h3>
   </div>
-  <div class="panel-body">
+  <div class="panel-body table-responsive">
     <table class="table table-striped table-hover">
       <tr>
         <th>Date of Review</th>

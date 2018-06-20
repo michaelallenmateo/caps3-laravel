@@ -106,6 +106,10 @@
 			padding-top: 5px;
 		}
 
+		.form-control.search {
+			height: auto;
+		}
+
 
 		/*star color*/
 

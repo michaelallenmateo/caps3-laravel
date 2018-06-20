@@ -87,6 +87,16 @@ span.profile_img img {
 
     }
 
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+  background-color: black;
+  color: white;
+}    
+
+.dropdown-menu>li>a:hover {
+  color: white;
+  background-color: black;
+}    
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -156,6 +166,7 @@ img.profile {
           
 
           <ul class="nav navbar-nav navbar-right">
+          <li class=""><a href="/admin">Go back to Dashboard</a></li>
           <li class="dropdown">
             <span class="profile_img"><img src="/image/{{ Auth::user()->profile_image }}" id="profile_image"></span>
             <a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
