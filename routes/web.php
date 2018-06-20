@@ -68,7 +68,11 @@ Route::middleware('auth')->group( function() {
 	//admin can delete a user account
 	Route::delete('/adminDeleteUser/{id}','UsersController@adminDeleteUser');
 
-	//user change password
+	//admin edit account
+	Route::get('/myaccount/admin', 'PagesController@adminMyAccount');
+	Route::get('/myaccount/{id}/adminEditAccountForm', 'UsersController@adminEditAccountForm');
+	Route::patch('/myaccount/{id}/adminEditAccountForm', 'UsersController@adminUpdateAccount');
+	Route::delete('/myaccount/{id}/adminDeleteAccount', 'UsersController@adminDeleteAccount');
 	
 });	
 

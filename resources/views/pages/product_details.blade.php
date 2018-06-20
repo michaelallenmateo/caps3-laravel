@@ -253,7 +253,15 @@
                     <p><strong>{{{$review->title}}}</strong></p>
                     <p>{{{$review->content}}}</p>
 
-                    
+                    @guest
+                    <a href="#"></a>
+                    @else
+                      @if(Auth::user()->id == $review->user_id)
+                      <a href="/myreviews/{{$review->id}}/edit" class="btn btn-primary btn-xs">Edit My Review</a>
+                      @else
+                      <a href="#"></a>
+                      @endif
+                    @endguest
                   </div>
                 </div>
               @endforeach

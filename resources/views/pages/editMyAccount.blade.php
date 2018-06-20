@@ -16,7 +16,7 @@
   }
 </style>
 
-@if (Auth::user()->id == Auth::user()->id)
+@if ($user->id == Auth::user()->id)
 
 <div class="container">
 @if(Session::get('errors'))
@@ -104,7 +104,7 @@
 
 @else 
 <div class="container">
-<h4>You are not allowed to edit this account</h4>
+<h4>Unable to process this request</h4>
 </div>
 @endif
 

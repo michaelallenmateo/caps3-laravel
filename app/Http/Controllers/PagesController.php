@@ -96,4 +96,9 @@ class PagesController extends Controller
 		return view ('pages.adminListUsers',compact('users'));
 	}
 
+
+	function adminMyAccount () {
+		return view('pages.adminAccountDetails');
+	}
+
 }

@@ -3,6 +3,8 @@
 <head>
 	<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<title>{{ config('app.name', 'BeautyTalk | Latest Reviews and Trends on beauty products') }}</title>
   <link rel="icon" type="image/gif/png" href="/image/tablogo.png">
 </head>
@@ -76,6 +78,14 @@
   color: #010800;
   background-color: lightgrey;
 }
+
+span.profile_img img {
+      margin-top: 10px;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+
+    }
 /*.navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
@@ -152,8 +162,16 @@
           
 
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#">Welcome, {{Auth::user()->firstname}}</a></li>
-            <li><a href="{{ route('logout') }}"
+          <li class="dropdown">
+            <span class="profile_img"><img src="/image/{{ Auth::user()->profile_image }}" id="profile_image"></span>
+            <a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                {{ Auth::user()->firstname }} <span class="caret"></span>
+            </a>
+
+            <ul class="dropdown-menu">
+                <li class=""><a href="/myaccount/admin">My Account</a></li>
+                <li>
+                    <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
                         Logout
@@ -161,9 +179,16 @@
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
-                    </form></li>
-          
-          </ul>
+                    </form>
+                </li>
+                <li>
+                    <a href="/changePassword/{{ Auth::user()->id }}">
+                       Change Password
+                    </a>
+                </li>
+            </ul>
+          </li>
+        </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
@@ -347,6 +372,7 @@
 </section>
 
 @endif
+
 
 </body>
 </html>
