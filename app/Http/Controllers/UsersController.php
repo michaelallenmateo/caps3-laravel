@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\User;
 use Session;
+use Storage;
 
 class UsersController extends Controller
 {
@@ -36,10 +37,12 @@ class UsersController extends Controller
                 $image = $request->file('image'); //gets the image from form
                 $image_name = time().'.'.$image->getClientOriginalExtension();
                 //ex. 12312356.jpg
-                $destination = "image"; //ex "images/" -> file destination
-                $image->move($destination, $image_name);
+                $destination = "/image/"; //ex "images/" -> file destination
+                // $image->move($destination, $image_name);
+                Storage::disk('public')->putFileAs($destination, $image, $image_name);
+                
+                $users->profile_image = $destination.'/'.$image_name;
 
-                $users->profile_image = $image_name;
 
             }
 
