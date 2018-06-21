@@ -41,7 +41,7 @@ class UsersController extends Controller
                 // $image->move($destination, $image_name);
                 Storage::disk('public')->putFileAs($destination, $image, $image_name);
                 
-                $users->profile_image = $destination.'/'.$image_name;
+                $users->profile_image = $image_name;
 
 
             }
@@ -124,15 +124,34 @@ class UsersController extends Controller
         $users->email = $request->email;
 
         //if condition(if file is uploaded that will replace the old profile image. If no file is uploaded the old image will be used)
+        //     if ($request->hasFile('image')) {
+
+        //         $image = $request->file('image'); //gets the image from form
+        //         $image_name = time().'.'.$image->getClientOriginalExtension();
+        //         //ex. 12312356.jpg
+        //         $destination = "image"; //ex "images/" -> file destination
+        //         $image->move($destination, $image_name);
+
+        //         $users->profile_image = $image_name;
+
+        //     }
+
+        //     $users->profile_image = $users->profile_image;
+
+        // $users->save();
+
+        //if condition(if file is uploaded that will replace the old profile image. If no file is uploaded the old image will be used)
             if ($request->hasFile('image')) {
 
                 $image = $request->file('image'); //gets the image from form
                 $image_name = time().'.'.$image->getClientOriginalExtension();
                 //ex. 12312356.jpg
-                $destination = "image"; //ex "images/" -> file destination
-                $image->move($destination, $image_name);
-
+                $destination = "/image/"; //ex "images/" -> file destination
+                // $image->move($destination, $image_name);
+                Storage::disk('public')->putFileAs($destination, $image, $image_name);
+                
                 $users->profile_image = $image_name;
+
 
             }
 

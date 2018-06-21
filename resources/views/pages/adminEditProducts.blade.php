@@ -198,7 +198,7 @@ div.container-fluid {
             <td>{{$product->category->title}}</td> 
             <td>&#8369 {{ number_format($product->price, 2)}}</td> 
             <td>{{$product->description}}</td> 
-            <td><img src="/image/{{$product->image}}"></td> 
+            <td><img src="/storage/image/{{$product->image}}"></td> 
             
             <td>  
 

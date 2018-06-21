@@ -153,7 +153,7 @@ div.container-fluid {
 	  {{ method_field('PATCH') }}
 	  <div class="prod_image">
 	    <label class="control-label col-sm-2" for="prod_image">Product Image:</label>
-	      <img  class="prod_image" id="prod_image" name="prod_image" src="/image/{{$products->image}}" style="width: 200px;height: 200px;">
+	      <img  class="prod_image" id="prod_image" name="prod_image" src="/storage/image/{{$products->image}}" style="width: 200px;height: 200px;">
 	  </div>
 
 	  <div class="form-group">

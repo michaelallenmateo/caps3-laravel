@@ -117,7 +117,7 @@
       <div class="img-thumbs">
         <div class="slim-scroll">
           <div class="item active">
-            <img src="/image/{{$products->image}}" class="img-responsive details">
+            <img src="/storage/image/{{$products->image}}" class="img-responsive details">
           </div>
           
         </div>
@@ -234,7 +234,7 @@
                         @endfor
                         <br>
 
-                        <span class="profile_img_pd"><img src="/image/{{ $review->user->profile_image }}" id="profile_image"></span> <br>
+                        <span class="profile_img_pd"><img src="/storage/image/{{ $review->user->profile_image }}" id="profile_image"></span> <br>
 
                         <strong>{{ $review->user ? $review->user->firstname." ".$review->user->lastname : 'User account deleted'}} </strong>
 

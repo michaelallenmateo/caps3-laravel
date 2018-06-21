@@ -118,6 +118,7 @@ tr {
 
 img.profile {
       margin-top: 10px;
+      margin-bottom: 10px;
       width: 75px;
       height: 75px;
       border-radius: 50%;
@@ -168,7 +169,7 @@ img.profile {
           <ul class="nav navbar-nav navbar-right">
           <li class=""><a href="/admin">Go back to Dashboard</a></li>
           <li class="dropdown">
-            <span class="profile_img"><img src="/image/{{ Auth::user()->profile_image }}" id="profile_image"></span>
+            <span class="profile_img"><img src="/storage/image/{{ Auth::user()->profile_image }}" id="profile_image"></span>
             <a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                 {{ Auth::user()->firstname }} <span class="caret"></span>
             </a>
@@ -215,7 +216,7 @@ img.profile {
   <div class="profile">
     <label class="control-label col-sm-2" for="profile_image">Profile Image:</label>
     <!-- {{-- <div class="col-sm-10">  --}} -->
-      <img  class="profile_image" id="profile_image" name="profile_image" src="/image/{{Auth::user()->profile_image}}" style="height: 200px; width: 200px;">
+      <img  class="profile" id="profile_image" name="profile_image" src="/storage/image/{{Auth::user()->profile_image}}" style="height: 200px; width: 200px;">
     <!-- {{-- </div> --}} -->
   </div>
 

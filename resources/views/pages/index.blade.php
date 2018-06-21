@@ -50,7 +50,7 @@
                     <div class="thumbnail">
                         <a href="/products/{{$product->id}}" style="list-style:none;">
                         <div class="col-xs-12">
-                            <img src="/image/{{$product->image}}" class="img-responsive">
+                            <img src="/storage/image/{{$product->image}}" class="img-responsive">
                         </div>
                         </a>
                         <p>{{ $product->name }}</p>

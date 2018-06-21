@@ -68,7 +68,7 @@
 	     </ul>
        <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <span class="profile_img"><img src="/image/{{ Auth::user()->profile_image }}" id="profile_image"></span>
+            <span class="profile_img"><img src="/storage/image/{{ Auth::user()->profile_image }}" id="profile_image"></span>
             <a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                 {{ Auth::user()->firstname }} <span class="caret"></span>
             </a>
