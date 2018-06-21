@@ -1,3 +1,8 @@
+		html {
+			min-height: 100%;
+			position: relative;
+		}
+
 		body{
 			height: 100%;
 			margin: 0;
@@ -135,7 +140,7 @@
 		/* STYLES SPECIFIC TO FOOTER  */
 		.footer {
 		  width: 100%;
-		  position: relative;
+		  position: absolute;
 		  bottom: 0;
 		  height: auto;
 		  background-color: black!important;

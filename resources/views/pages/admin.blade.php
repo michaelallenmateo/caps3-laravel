@@ -349,7 +349,7 @@ span.profile_img img {
 {{-- latest reviews --}}
 <div class="panel panel-default">
   <div class="panel-heading"style="background-color:  black;color:white;">
-    <h3 class="panel-title">Latest Reviews Created</h3>
+    <h3 class="panel-title">Latest Reviews Created / Updated</h3>
   </div>
   <div class="panel-body table-responsive">
     <table class="table table-striped table-hover">

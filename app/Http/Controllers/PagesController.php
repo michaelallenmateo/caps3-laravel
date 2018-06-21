@@ -58,7 +58,7 @@ class PagesController extends Controller
 		$productsCount = Products::all();
 		$products = Products::orderBy('created_at', 'desc')->limit(5)->get();;
 		$reviewsCount = Reviews::all();
-		$reviews = Reviews::orderBy('created_at', 'desc')->limit(5)->get();;
+		$reviews = Reviews::orderBy('updated_at', 'desc')->limit(5)->get();;
 		$userCount = User::all();
 		$users = User::orderBy('created_at', 'desc')->limit(5)->get();
 		$categories = Categories::all();

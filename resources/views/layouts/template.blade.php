@@ -107,7 +107,7 @@
 <div class="footer">
   <div class="contain">
   <div class="col">
-    <h1>Company</h1>
+    <h1>Our Company</h1>
     <ul>
       <li>About</li>
       <li>Corporate Responsibility</li>
