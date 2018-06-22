@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<title>{{ config('app.name', 'BeautyTalk | Latest Reviews and Trends on beauty products') }}</title>
+	<title>BeautyTalk | Latest Reviews and Trends on beauty products</title>
   <link rel="icon" type="image/gif/png" href="/image/tablogo.png">
 </head>
 <body>
@@ -174,7 +174,7 @@ span.profile_img img {
 
           <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <span class="profile_img"><img src="/storage/image/{{ Auth::user()->profile_image }}" id="profile_image"></span>
+            <span class="profile_img"><img src="/image/{{ Auth::user()->profile_image }}" id="profile_image"></span>
             <a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                 {{ Auth::user()->firstname }} <span class="caret"></span>
             </a>

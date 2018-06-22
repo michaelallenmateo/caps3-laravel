@@ -48,7 +48,7 @@
   <div class="profile">
     <label class="control-label col-sm-2" for="profile_image">Profile Image:</label>
     {{-- <div class="col-sm-10">  --}}
-      <img  class="profile_image" id="profile_image" name="profile_image" src="/storage/image/{{Auth::user()->profile_image}}">
+      <img  class="profile_image" id="profile_image" name="profile_image" src="/image/{{Auth::user()->profile_image}}">
     {{-- </div> --}}
   </div>
 
